@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.ToString;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Builder
 @ToString(includeFieldNames = false)
 @EqualsAndHashCode
-public class Client implements Comparable<Client> {
+public class Client implements Comparable<Client>, Serializable {
     private String name;
     private int age;
 

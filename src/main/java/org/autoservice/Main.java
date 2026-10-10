@@ -4,6 +4,7 @@ import org.autoservice.dto.CarDto;
 import org.autoservice.model.Car;
 import org.autoservice.model.Client;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -82,5 +83,58 @@ public class Main {
         //Print carDto list
         System.out.println("\n== Car dto list ==");
         carDtoList.forEach(System.out::println);
+
+        String filename = "clients.ser";
+
+        //Data serialization into the clients.ser file
+        System.out.println("\n== Data serialization ==");
+        try {
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            for (Client client : clients) {
+                out.writeObject(client);
+            }
+            out.close();
+            file.close();
+            System.out.println("Clients have been serialized");
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        List<Client> deserializedClients = new ArrayList<>();
+
+        //Data deserialization into deserializedClients list
+        System.out.println("\n== Data deserialization ==");
+        try {
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            while (true) {
+                try {
+                    Client client = (Client) in.readObject();
+                    deserializedClients.add(client);
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+
+            in.close();
+            file.close();
+            System.out.println("Clients have been deserialized");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        //Print deserialized clients and their cars
+        System.out.println("\n== Deserialized clients ==");
+        for (Client client : deserializedClients) {
+            System.out.println(client);
+            for (Car car : client.getCars()) {
+                System.out.println("  " + car);
+            }
+        }
     }
 }

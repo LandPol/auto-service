@@ -7,11 +7,13 @@ import lombok.ToString;
 import lombok.EqualsAndHashCode;
 import org.autoservice.dto.CarDto;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Builder
 @ToString(includeFieldNames = false)
-public class Car implements Comparable<Car> {
+public class Car implements Comparable<Car>, Serializable {
     private String model;
     private String type;
     private int year;
