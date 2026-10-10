@@ -5,6 +5,8 @@ import org.autoservice.model.Client;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -47,11 +49,27 @@ public class Main {
         List<Client> clients = List.of(client1, client2);
 
         //Print all clients and their cars
+        System.out.println("== All clients and their cars ==");
         for (Client client : clients) {
             System.out.println(client);
             for (Car car : client.getCars()) {
                 System.out.println("  " + car);
             }
         }
+
+        //Create set of all cars and print them
+        System.out.println("\n== All cars ==");
+        Set<Car> allCars = clients.stream()
+                .flatMap(client -> client.getCars().stream())
+                .collect(Collectors.toSet());
+
+        allCars.forEach(System.out::println);
+
+        //Filter and sort all cars
+        System.out.println("\n== All cars filtered and sorted ==");
+        allCars.stream()
+                .filter(car -> car.getYear() >= 2018)
+                .sorted()
+                .forEach(System.out::println);
     }
 }
