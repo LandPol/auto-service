@@ -1,5 +1,6 @@
 package org.autoservice;
 
+import org.autoservice.dto.CarDto;
 import org.autoservice.model.Car;
 import org.autoservice.model.Client;
 
@@ -71,5 +72,15 @@ public class Main {
                 .filter(car -> car.getYear() >= 2018)
                 .sorted()
                 .forEach(System.out::println);
+
+        //Transform each Car to CarDto
+        List<CarDto> carDtoList = allCars.stream()
+                .map(Car::toDto)
+                .sorted()
+                .toList();
+
+        //Print carDto list
+        System.out.println("\n== Car dto list ==");
+        carDtoList.forEach(System.out::println);
     }
 }

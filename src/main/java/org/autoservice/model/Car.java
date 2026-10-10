@@ -26,7 +26,19 @@ public class Car implements Comparable<Car> {
             throw new NullPointerException();
         }
 
-        return model.compareTo(o.model);
+        int modelResult = model.compareTo(o.getModel());
+
+        if (modelResult != 0) {
+            return modelResult;
+        }
+
+        int typeResult = type.compareTo(o.getType());
+
+        if (typeResult != 0) {
+            return typeResult;
+        }
+
+        return year - o.year;
     }
 
     public CarDto toDto() {
