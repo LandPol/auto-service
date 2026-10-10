@@ -25,7 +25,11 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public void deleteClientById(UUID id) {
-        clientRepository.deleteById(id);
+    public boolean deleteClientById(UUID id) {
+        if (clientRepository.existsById(id)) {
+            clientRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

@@ -13,11 +13,11 @@ import java.util.UUID;
 public class CarService {
     private final CarRepository carRepository;
 
-    public List<Car> findAll() {
+    public List<Car> findAllCars() {
         return carRepository.findAll();
     }
 
-    public Car findById(UUID id) {
+    public Car findCarById(UUID id) {
         return carRepository.findById(id).orElse(null);
     }
 
@@ -25,11 +25,15 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public void deleteCarById(UUID id) {
-        carRepository.deleteById(id);
+    public boolean deleteCarById(UUID id) {
+        if (carRepository.existsById(id)) {
+            carRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
-    public List<Car> findByClientId(UUID clientId) {
+    public List<Car> findCarsByClientId(UUID clientId) {
         return carRepository.findByClientId(clientId);
     }
 }
