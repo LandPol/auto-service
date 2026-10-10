@@ -10,6 +10,7 @@ import org.autoservice.dto.CarDto;
 @Getter
 @Setter
 @Builder
+@ToString(includeFieldNames = false)
 public class Car implements Comparable<Car> {
     private String model;
     private String type;
