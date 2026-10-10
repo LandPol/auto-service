@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.Builder;
 import lombok.ToString;
 import lombok.EqualsAndHashCode;
+import org.autoservice.dto.CarDto;
 
 @Getter
 @Setter
@@ -12,7 +13,7 @@ import lombok.EqualsAndHashCode;
 public class Car implements Comparable<Car> {
     private String model;
     private String type;
-    private int rocznik;
+    private int year;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
@@ -25,5 +26,14 @@ public class Car implements Comparable<Car> {
         }
 
         return model.compareTo(o.model);
+    }
+
+    public CarDto toDto() {
+        return CarDto.builder()
+                .model(this.model)
+                .type(this.type)
+                .year(this.year)
+                .clientName(this.client.getName())
+                .build();
     }
 }
