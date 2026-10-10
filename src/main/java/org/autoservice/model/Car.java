@@ -1,25 +1,35 @@
 package org.autoservice.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Builder;
-import lombok.ToString;
-import lombok.EqualsAndHashCode;
+import jakarta.persistence.*;
+import lombok.*;
 import org.autoservice.dto.CarDto;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Builder
 @ToString(includeFieldNames = false)
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "cars")
 public class Car implements Comparable<Car>, Serializable {
+    @Id
+    private UUID id;
+
     private String model;
+
     private String type;
-    private int year;
+
+    @Column(name = "production_year")
+    private int productionYear;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
     private Client client;
 
     @Override
@@ -40,14 +50,14 @@ public class Car implements Comparable<Car>, Serializable {
             return typeResult;
         }
 
-        return year - o.year;
+        return Integer.compare(productionYear, o.getProductionYear());
     }
 
     public CarDto toDto() {
         return CarDto.builder()
                 .model(this.model)
                 .type(this.type)
-                .year(this.year)
+                .productionYear(this.productionYear)
                 .clientName(this.client.getName())
                 .build();
     }

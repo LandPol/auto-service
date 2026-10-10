@@ -1,26 +1,33 @@
 package org.autoservice.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Builder;
-import lombok.ToString;
-import lombok.EqualsAndHashCode;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Builder
 @ToString(includeFieldNames = false)
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "clients")
 public class Client implements Comparable<Client>, Serializable {
+    @Id
+    private UUID id;
+
     private String name;
+
     private int age;
 
     @Builder.Default
     @ToString.Exclude
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Car> cars = new ArrayList<>();
 
     public void addCar(Car car) {

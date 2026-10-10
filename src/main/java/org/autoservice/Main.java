@@ -21,14 +21,14 @@ public class Main {
         Car car1 = Car.builder()
                 .model("Golf")
                 .type("Hatchback")
-                .year(2015)
+                .productionYear(2015)
                 .client(client1)
                 .build();
 
         Car car2 = Car.builder()
                 .model("Passat")
                 .type("Kombi")
-                .year(2018)
+                .productionYear(2018)
                 .client(client1)
                 .build();
 
@@ -43,7 +43,7 @@ public class Main {
         Car car3 = Car.builder()
                 .model("Focus")
                 .type("Sedan")
-                .year(2020)
+                .productionYear(2020)
                 .client(client2)
                 .build();
 
@@ -71,7 +71,7 @@ public class Main {
         //Filter and sort all cars
         System.out.println("\n== All cars filtered and sorted ==");
         allCars.stream()
-                .filter(car -> car.getYear() >= 2018)
+                .filter(car -> car.getProductionYear() >= 2018)
                 .sorted()
                 .forEach(System.out::println);
 

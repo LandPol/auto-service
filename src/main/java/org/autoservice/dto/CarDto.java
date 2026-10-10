@@ -11,7 +11,7 @@ import lombok.*;
 public class CarDto implements Comparable<CarDto> {
     private String model;
     private String type;
-    private int year;
+    private int productionYear;
 
     private String clientName;
 
@@ -33,6 +33,6 @@ public class CarDto implements Comparable<CarDto> {
             return typeResult;
         }
 
-        return Integer.compare(year, o.getYear());
+        return Integer.compare(productionYear, o.getProductionYear());
     }
 }
