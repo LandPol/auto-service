@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -136,5 +137,27 @@ public class Main {
                 System.out.println("  " + car);
             }
         }
+
+        System.out.println("\n== Clients and their cars using threads ==");
+        ForkJoinPool pool = new ForkJoinPool(2);
+
+        try {
+            pool.submit(() -> clients.parallelStream().forEach(client -> {
+                StringBuilder result = new StringBuilder("[ " + Thread.currentThread().getName() + " ] " + client);
+                for (Car car : client.getCars()) {
+                    result.append("\n  ").append(car);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                System.out.println(result);
+            })).join();
+        } finally {
+            pool.shutdown();
+        }
+
+        pool.shutdown();
     }
 }

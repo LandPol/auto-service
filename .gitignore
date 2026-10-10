@@ -39,3 +39,6 @@ build/
 
 ### Serialized Files ###
 *.ser
+
+### Personal Notes ###
+/personal-notes/
