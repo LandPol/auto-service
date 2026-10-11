@@ -36,4 +36,16 @@ public class CarService {
     public List<Car> findCarsByClientId(UUID clientId) {
         return carRepository.findByClientId(clientId);
     }
+
+    public Car updateCar(Car newCar) {
+        Car car = carRepository.findById(newCar.getId()).orElse(null);
+        if (car != null) {
+            newCar.setModel(newCar.getModel());
+            newCar.setType(car.getType());
+            newCar.setProductionYear(newCar.getProductionYear());
+            newCar.setClient(newCar.getClient());
+            return newCar;
+        }
+        return null;
+    }
 }

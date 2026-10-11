@@ -33,6 +33,8 @@ public class ConsoleRunner implements CommandLineRunner {
             System.out.println("7. Delete client");
             System.out.println("8. Delete car");
             System.out.println("9. Find car by client id");
+            System.out.println("10. Update client by id");
+            System.out.println("11. Update car by id");
             System.out.println("0. Exit");
             System.out.println("Enter your choice: ");
 
@@ -76,8 +78,11 @@ public class ConsoleRunner implements CommandLineRunner {
                             .name(name)
                             .age(age)
                             .build();
-                    clientService.saveClient(client);
-                    System.out.println(client + " added successfully");
+                    if (clientService.saveClient(client) != null) {
+                        System.out.println(client + " added successfully");
+                    } else {
+                        System.out.println(client + " added failed");
+                    }
                     break;
                 case 6:
                     System.out.println("Enter car model: ");
@@ -104,8 +109,11 @@ public class ConsoleRunner implements CommandLineRunner {
                                     .client(clientOwner)
                                     .build();
 
-                            carService.saveCar(car);
-                            System.out.println(car + " added successfully");
+                            if (carService.saveCar(car) != null) {
+                                System.out.println(car + " added successfully");
+                            } else {
+                                System.out.println(car + " added failed");
+                            }
                         } else {
                             System.out.println("Car with given ID not found");
                         }
@@ -154,6 +162,74 @@ public class ConsoleRunner implements CommandLineRunner {
                         System.out.println("Invalid UUID");
                     }
                     break;
+                case 10:
+                    try {
+                        System.out.println("Enter client UUID: ");
+                        UUID clientUUID = UUID.fromString(scanner.nextLine());
+
+                        System.out.println("Enter client name: ");
+                        String clientName = scanner.nextLine();
+
+                        System.out.println("Enter client age: ");
+                        int clientAge = scanner.nextInt();
+                        scanner.nextLine();
+
+                        Client newClient = Client.builder()
+                                .id(clientUUID)
+                                .name(clientName)
+                                .age(clientAge)
+                                .build();
+
+                        if (clientService.updateClient(newClient) != null) {
+                            System.out.println(newClient + " updated successfully");
+                        } else {
+                            System.out.println(newClient + " not found");
+                        }
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid age format");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Invalid UUID");
+                    }
+                    break;
+                case 11:
+                    try {
+                        System.out.println("Enter car UUID: ");
+                        UUID carUUID = UUID.fromString(scanner.nextLine());
+
+                        System.out.println("Enter car model: ");
+                        String carModel = scanner.nextLine();
+
+                        System.out.println("Enter car type: ");
+                        String carType = scanner.nextLine();
+
+                        System.out.println("Enter car production year: ");
+                        int carProductionYear = scanner.nextInt();
+                        scanner.nextLine();
+
+                        System.out.println("Enter car owner UUID: ");
+                        UUID carOwnerId = UUID.fromString(scanner.nextLine());
+
+                        Car newCar = Car.builder()
+                                .id(carUUID)
+                                .model(carModel)
+                                .type(carType)
+                                .productionYear(carProductionYear)
+                                .client(clientService.findClientById(carOwnerId))
+                                .build();
+
+                        if (carService.updateCar(newCar) != null) {
+                            System.out.println(newCar + " updated successfully");
+                        } else {
+                            System.out.println(newCar + " not found");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid production year format");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Invalid UUID");
+                    }
+
+
                 case 0:
                     running = false;
                     break;
