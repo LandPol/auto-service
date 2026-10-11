@@ -10,15 +10,18 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Collectors;
+import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
         Client client1 = Client.builder()
+                .id(UUID.randomUUID())
                 .name("Jan Kowalski")
                 .age(35)
                 .build();
 
         Car car1 = Car.builder()
+                .id(UUID.randomUUID())
                 .model("Golf")
                 .type("Hatchback")
                 .productionYear(2015)
@@ -26,6 +29,7 @@ public class Main {
                 .build();
 
         Car car2 = Car.builder()
+                .id(UUID.randomUUID())
                 .model("Passat")
                 .type("Kombi")
                 .productionYear(2018)
@@ -36,11 +40,13 @@ public class Main {
         client1.addCar(car2);
 
         Client client2 = Client.builder()
+                .id(UUID.randomUUID())
                 .name("Anna Nowak")
                 .age(28)
                 .build();
 
         Car car3 = Car.builder()
+                .id(UUID.randomUUID())
                 .model("Focus")
                 .type("Sedan")
                 .productionYear(2020)
