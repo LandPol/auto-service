@@ -55,9 +55,9 @@ public class ClientController {
     public ResponseEntity<ClientResponseDto> createClient(@PathVariable UUID id, @RequestBody ClientCreateUpdateDto newClient) {
         if (newClient != null && clientService.findClientById(id) != null) {
             Client client = ClientMapper.mapClientCreateUpdateDtoToClient(newClient);
-            clientService.updateClient(client);
+            client.setId(id);
 
-            return new ResponseEntity<>(ClientMapper.mapClientToClientResponseDto(client), HttpStatus.OK);
+            return new ResponseEntity<>(ClientMapper.mapClientToClientResponseDto(clientService.updateClient(client)), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
@@ -67,6 +67,6 @@ public class ClientController {
         if (clientService.deleteClientById(id)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

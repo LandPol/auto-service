@@ -16,7 +16,7 @@ public class CarResponseDto implements Comparable<CarResponseDto> {
     private String model;
     private String type;
     private int productionYear;
-    private Client client;
+    private UUID clientId;
 
     @Override
     public int compareTo(CarResponseDto o) {

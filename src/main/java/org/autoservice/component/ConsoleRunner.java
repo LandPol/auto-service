@@ -228,8 +228,7 @@ public class ConsoleRunner implements CommandLineRunner {
                     } catch (IllegalArgumentException e) {
                         System.out.println("Invalid UUID");
                     }
-
-
+                    break;
                 case 0:
                     running = false;
                     break;

@@ -4,11 +4,9 @@ import org.autoservice.dto.CarCollectionDto;
 import org.autoservice.dto.CarCreateUpdateDto;
 import org.autoservice.dto.CarResponseDto;
 import org.autoservice.model.Car;
-import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Component
 public class CarMapper {
     //CarCreateUpdateDto
     public static CarCreateUpdateDto mapCarToCarCreateUpdateDto(Car car) {
@@ -35,17 +33,7 @@ public class CarMapper {
                 .model(car.getModel())
                 .type(car.getType())
                 .productionYear(car.getProductionYear())
-                .client(car.getClient())
-                .build();
-    }
-
-    public static Car mapCarResponseDtoToCar(CarResponseDto carResponseDto) {
-        return Car.builder()
-                .id(carResponseDto.getId())
-                .model(carResponseDto.getModel())
-                .type(carResponseDto.getType())
-                .productionYear(carResponseDto.getProductionYear())
-                .client(carResponseDto.getClient())
+                .clientId(car.getClient().getId())
                 .build();
     }
 

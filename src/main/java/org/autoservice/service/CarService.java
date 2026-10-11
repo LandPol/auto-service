@@ -40,11 +40,11 @@ public class CarService {
     public Car updateCar(Car newCar) {
         Car car = carRepository.findById(newCar.getId()).orElse(null);
         if (car != null) {
-            newCar.setModel(newCar.getModel());
-            newCar.setType(car.getType());
-            newCar.setProductionYear(newCar.getProductionYear());
-            newCar.setClient(newCar.getClient());
-            return newCar;
+            car.setModel(newCar.getModel());
+            car.setType(newCar.getType());
+            car.setProductionYear(newCar.getProductionYear());
+            car.setClient(newCar.getClient());
+            return carRepository.save(car);
         }
         return null;
     }

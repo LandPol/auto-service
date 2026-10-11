@@ -1,20 +1,16 @@
 package org.autoservice.mapper;
 
-import lombok.AllArgsConstructor;
 import org.autoservice.dto.CarResponseDto;
 import org.autoservice.dto.ClientCollectionDto;
 import org.autoservice.dto.ClientCreateUpdateDto;
 import org.autoservice.dto.ClientResponseDto;
 import org.autoservice.model.Car;
 import org.autoservice.model.Client;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Component
-@AllArgsConstructor
 public class ClientMapper {
     //ClientCreateUpdateDto
     public static ClientCreateUpdateDto mapClientToClientCreateUpdateDto(Client client) {
@@ -43,19 +39,6 @@ public class ClientMapper {
                 .name(client.getName())
                 .age(client.getAge())
                 .cars(carResponseDtoList)
-                .build();
-    }
-
-    public static Client mapClientResponseDtoToClient(ClientResponseDto clientResponseDto) {
-        List<Car> cars = new ArrayList<>();
-        for (CarResponseDto car : clientResponseDto.getCars()) {
-            cars.add(CarMapper.mapCarResponseDtoToCar(car));
-        }
-        return Client.builder()
-                .id(clientResponseDto.getId())
-                .name(clientResponseDto.getName())
-                .age(clientResponseDto.getAge())
-                .cars(cars)
                 .build();
     }
 
