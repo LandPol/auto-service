@@ -1,5 +1,6 @@
 package org.autoservice.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.autoservice.dto.ClientCollectionDto;
 import org.autoservice.dto.ClientCreateUpdateDto;
@@ -41,7 +42,7 @@ public class ClientController {
     }
 
     @PostMapping()
-    public ResponseEntity<ClientResponseDto> createClient(@RequestBody ClientCreateUpdateDto newClient) {
+    public ResponseEntity<ClientResponseDto> createClient(@Valid @RequestBody ClientCreateUpdateDto newClient) {
         if (newClient != null) {
             Client client = ClientMapper.mapClientCreateUpdateDtoToClient(newClient);
             clientService.saveClient(client);
@@ -52,7 +53,7 @@ public class ClientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ClientResponseDto> createClient(@PathVariable UUID id, @RequestBody ClientCreateUpdateDto newClient) {
+    public ResponseEntity<ClientResponseDto> createClient(@PathVariable UUID id, @Valid @RequestBody ClientCreateUpdateDto newClient) {
         if (newClient != null && clientService.findClientById(id) != null) {
             Client client = ClientMapper.mapClientCreateUpdateDtoToClient(newClient);
             client.setId(id);

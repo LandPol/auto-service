@@ -43,3 +43,6 @@ build/
 
 ### Personal Notes ###
 /personal-notes/
+
+### Exported as zip ###
+*.zip

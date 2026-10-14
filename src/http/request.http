@@ -34,7 +34,7 @@ DELETE http://localhost:8080/api/clients/{{createdClientId}}
 
 ###
 
-GET http://localhost:8080/api/clients/{{createdClientId}}/cars
+GET http://localhost:8080/api/clients/5e274e2a-c791-4b49-8ec4-ee5604d4ed7a/cars
 Accept: application/json
 
 ###

@@ -1,5 +1,7 @@
 package org.autoservice.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 @Getter
@@ -9,6 +11,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientCreateUpdateDto {
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+
+    @Positive(message = "Age cannot be negative or zero")
     private int age;
 }

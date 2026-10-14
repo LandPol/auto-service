@@ -1,4 +1,5 @@
 package org.autoservice.dto;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.UUID;
@@ -11,5 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CarCollectionDto {
     private UUID id;
+
+    @NotBlank(message = "Description cannot be blank")
     private String description;
 }

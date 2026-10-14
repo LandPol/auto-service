@@ -1,5 +1,6 @@
 package org.autoservice.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.autoservice.dto.*;
 import org.autoservice.mapper.CarMapper;
@@ -48,7 +49,7 @@ public class CarController {
     }
 
     @PostMapping("/api/clients/{clientId}/cars")
-    public ResponseEntity<CarResponseDto> createCar(@PathVariable UUID clientId, @RequestBody CarCreateUpdateDto newCar) {
+    public ResponseEntity<CarResponseDto> createCar(@PathVariable UUID clientId, @Valid @RequestBody CarCreateUpdateDto newCar) {
         Client clientOwner = clientService.findClientById(clientId);
         if (clientOwner == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -63,7 +64,7 @@ public class CarController {
     }
 
     @PutMapping("/api/clients/{clientId}/cars/{id}")
-    public ResponseEntity<CarResponseDto> updateCar(@PathVariable UUID clientId, @PathVariable UUID id, @RequestBody CarCreateUpdateDto newCar) {
+    public ResponseEntity<CarResponseDto> updateCar(@PathVariable UUID clientId, @PathVariable UUID id, @Valid @RequestBody CarCreateUpdateDto newCar) {
         if (clientService.findClientById(clientId) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
