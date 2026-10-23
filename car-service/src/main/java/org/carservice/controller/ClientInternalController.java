@@ -22,6 +22,25 @@ public class ClientInternalController {
         return new ResponseEntity<>(savedClient, HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Client> updateClient(@PathVariable UUID id, @Valid @RequestBody Client newClient) {
+        newClient.setId(id);
+        Client updatedClient = clientService.updateClient(newClient);
+        if (updatedClient != null) {
+            return new ResponseEntity<>(updatedClient, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(updatedClient, HttpStatus.NOT_FOUND);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Client> patchClient(@PathVariable UUID id, @Valid @RequestBody Client newClient) {
+        newClient.setId(id);
+        Client updatedClient = clientService.updateClient(newClient);
+        if (updatedClient != null) {
+            return new ResponseEntity<>(updatedClient, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(updatedClient, HttpStatus.NOT_FOUND);
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteClientById(@PathVariable UUID id) {
         boolean result = clientService.deleteClientById(id);

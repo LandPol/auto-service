@@ -28,4 +28,14 @@ public class ClientService {
         }
         return false;
     }
+
+    public Client updateClient(Client newClient) {
+        Client client = clientRepository.findById(newClient.getId()).orElse(null);
+        if (client != null) {
+            client.setName(newClient.getName());
+            client.setAge(newClient.getAge());
+            return clientRepository.save(client);
+        }
+        return null;
+    }
 }
