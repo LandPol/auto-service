@@ -1,12 +1,10 @@
 package org.autoservice.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.*;
 import org.autoservice.dto.CarDto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter

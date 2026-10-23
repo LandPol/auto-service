@@ -234,5 +234,6 @@ public class ConsoleRunner implements CommandLineRunner {
                     break;
             }
         }
+        System.exit(0);
     }
 }
