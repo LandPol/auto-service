@@ -162,3 +162,7 @@ p {
 .edit-button {
   background-color: #990000;
 }
+
+.back-button, .add-car-button {
+  margin: 5px;
+}

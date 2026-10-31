@@ -47,4 +47,5 @@
     <p>List of cars is empty</p>
   }
   <button (click)="onBack()" class="back-button">Back</button>
+  <button [routerLink]="['/clients', clientId, 'cars', 'add']" class="add-car-button">Add Car</button>
 </div>

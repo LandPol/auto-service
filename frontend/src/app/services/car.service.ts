@@ -27,7 +27,7 @@ export class CarService {
     return this.http.delete<Car>(`${this.apiUrl}/${clientId}/cars/${carId}`);
   }
 
-  createCar(clientId: string, car: {model: string, type: string, productionYear: number}): Observable<Car> {
+  createCar(clientId: string, car: {model: string, type: string, productionYear: number, clientId: string}): Observable<Car> {
     return this.http.post<Car>(`${this.apiUrl}/${clientId}/cars`, car);
   }
 
