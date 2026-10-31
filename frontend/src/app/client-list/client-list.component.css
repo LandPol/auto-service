@@ -29,6 +29,10 @@ h2 {
   border: 1px solid white;
 }
 
+.error-banner > b{
+  color: #4c0000;
+}
+
 table {
   width: 100%;
   margin: 0 auto;
@@ -84,4 +88,60 @@ p {
   font-style: italic;
   font-size: 16px;
   margin-top: 20px;
+}
+
+.add-client-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.client-input {
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid white;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  flex: 1;
+  transition: all 0.2s ease;
+}
+
+.client-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.client-input:focus {
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.client-input-age {
+  max-width: 90px;
+  flex: none;
+}
+
+.add-button {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: 1px solid white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.add-button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
 }

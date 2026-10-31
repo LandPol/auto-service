@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {Client} from '../models/client.model';
 import {ClientService} from '../services/client.service';
 
 @Component({
   selector: "app-client-list",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: "client-list.component.html",
   styleUrl: "client-list.component.css"
 })
@@ -14,6 +15,9 @@ import {ClientService} from '../services/client.service';
 export class ClientListComponent implements OnInit {
   clients: Client[] = [];
   errorMessage: string = "";
+
+  newClientName: string = "";
+  newClientAge: number | null = null;
 
   constructor(private clientService: ClientService) {
 
@@ -44,6 +48,25 @@ export class ClientListComponent implements OnInit {
       },
       error: (err) => {
         this.errorMessage = `Failed to delete client ${id}`;
+        console.error(err);
+      }
+    })
+  }
+
+  addClient(): void {
+    if (!this.newClientName.trim() || !this.newClientAge) {
+      this.errorMessage = "Please provide both name and age"
+      return;
+    }
+    this.clientService.createClient({name: this.newClientName, age: this.newClientAge}).subscribe({
+      next: () => {
+        this.newClientName = "";
+        this.newClientAge = null;
+        this.loadClients();
+        window.location.reload();
+      },
+      error: (err) => {
+        this.errorMessage = "Filed to add new client"
         console.error(err);
       }
     })

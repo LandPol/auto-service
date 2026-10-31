@@ -4,9 +4,25 @@
   <p style="color: yellow; font-weight: bold;">Number of elements: {{ clients.length }}</p>
   @if (errorMessage) {
     <div class="error-banner">
-      {{errorMessage}}
+      <b>Error:</b> {{errorMessage}}
     </div>
   }
+
+  <div class="add-client-form">
+    <input
+      type="text"
+      [(ngModel)]="newClientName"
+      placeHolder="Enter client name"
+      class="client-input"
+    >
+    <input
+      type="text"
+      [(ngModel)]="newClientAge"
+      placeHolder="Enter client age"
+      class="client-input"
+    >
+    <button (click)="addClient()" class="add-button">Add Client</button>
+  </div>
 
   @if (clients.length > 0) {
     <table>
