@@ -29,10 +29,6 @@ h2 {
   border: 1px solid white;
 }
 
-.error-banner > b{
-  color: #4c0000;
-}
-
 table {
   width: 100%;
   margin: 0 auto;

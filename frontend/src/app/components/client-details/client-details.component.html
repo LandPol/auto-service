@@ -1,51 +1,66 @@
 <div class="main-container">
-  <h2>List of client cars</h2>
+  <h2>Client Details & Cars</h2>
+
   @if (errorMessage) {
     <div class="error-banner">
       <b>Error:</b> {{errorMessage}}
     </div>
   }
 
-  <table>
-    <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Name</th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{clientId}}</td>
-        <td>{{client?.name}}</td>
-      </tr>
-    </tbody>
-  </table>
+  @if (client) {
+    <div class="details-card">
+      <div class="detail-row">
+        <span class="label">Client ID:</span>
+        <span class="value">{{ client.id }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Name:</span>
+        <span class="value">{{ client.name }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Age:</span>
+        <span class="value">{{ client.age }}</span>
+      </div>
+    </div>
+  }
+
+  <h3 style="color: white; text-align: center; margin-top: 25px; margin-bottom: 15px;">Cars List</h3>
 
   @if (cars.length > 0) {
-    <table>
-      <thead>
+    <div class="details-card" style="padding: 10px;">
+      <table class="cars-table">
+        <thead>
         <tr>
           <th>Car Id</th>
           <th>Car description</th>
           <th>Actions</th>
         </tr>
-      </thead>
-      <tbody>
-        @for (car of cars; track car.id) {
-          <tr>
-            <td>{{car.id}}</td>
-            <td>{{car.description}}</td>
-            <td>
-              <button [routerLink]="['/clients', clientId, 'cars', car.id]" class="edit-button">Edit</button>
-              <button (click)="onDelete(clientId, car.id)" class="delete-button">Delete</button>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          @for (car of cars; track car.id) {
+            <tr>
+              <td>{{car.id}}</td>
+              <td>{{car.description}}</td>
+              <td>
+                <div class="action-buttons-group">
+                  <button [routerLink]="['/clients', clientId, 'cars', car.id]" class="edit-button">Details</button>
+                  <button [routerLink]="['/clients', clientId, 'cars', car.id, 'edit']" class="edit-button">Edit</button>
+                  <button (click)="onDelete(clientId, car.id)" class="delete-button">Delete</button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
   } @else {
-    <p>List of cars is empty</p>
+    <p style="color: white; text-align: center;">List of cars is empty</p>
   }
-  <button (click)="onBack()" class="back-button">Back</button>
-  <button [routerLink]="['/clients', clientId, 'cars', 'add']" class="add-car-button">Add Car</button>
+
+  <div class="button-group" style="margin-top: 25px;">
+    <button (click)="onBack()" class="back-button">Back</button>
+    <button [routerLink]="['/clients', clientId, 'cars', 'add']" class="add-car-button">Add Car</button>
+  </div>
 </div>
