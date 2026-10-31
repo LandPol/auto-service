@@ -1,0 +1,35 @@
+
+<div class="main-container">
+  <h2>List of clients</h2>
+  <p style="color: yellow; font-weight: bold;">Number of elements: {{ clients.length }}</p>
+  @if (errorMessage) {
+    <div class="error-banner">
+      {{errorMessage}}
+    </div>
+  }
+
+  @if (clients.length > 0) {
+    <table>
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (client of clients; track client.id) {
+          <tr>
+            <td>{{client.id}}</td>
+            <td>{{client.name}}</td>
+            <td>
+              <button (click)="onDelete(client.id)" class="delete-button">Delete</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>List of clients is empty</p>
+  }
+</div>
