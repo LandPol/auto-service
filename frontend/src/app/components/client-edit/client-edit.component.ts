@@ -2,8 +2,8 @@ import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Client} from '../models/client.model';
-import {ClientService} from '../services/client.service';
+import {Client} from '../../models/client.model';
+import {ClientService} from '../../services/client.service';
 
 @Component({
   selector: "app-client-edit",

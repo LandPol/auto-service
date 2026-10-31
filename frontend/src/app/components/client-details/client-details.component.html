@@ -1,0 +1,49 @@
+<div class="main-container">
+  <h2>List of client cars</h2>
+  @if (errorMessage) {
+    <div class="error-banner">
+      <b>Error:</b> {{errorMessage}}
+    </div>
+  }
+
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{clientId}}</td>
+        <td>{{client?.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  @if (cars.length > 0) {
+    <table>
+      <thead>
+        <tr>
+          <th>Car Id</th>
+          <th>Car description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (car of cars; track car.id) {
+          <tr>
+            <td>{{car.id}}</td>
+            <td>{{car.description}}</td>
+            <td>
+              <button (click)="onDelete(clientId, car.id)" class="delete-button">Delete</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>List of cars is empty</p>
+  }
+  <button (click)="onBack()" class="back-button">Back</button>
+</div>

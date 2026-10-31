@@ -3,8 +3,8 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterLink, Router, NavigationEnd} from '@angular/router';
 import {filter} from 'rxjs/operators';
-import {Client} from '../models/client.model';
-import {ClientService} from '../services/client.service';
+import {Client} from '../../models/client.model';
+import {ClientService} from '../../services/client.service';
 
 @Component({
   selector: "app-client-list",
@@ -81,9 +81,5 @@ export class ClientListComponent implements OnInit {
         console.error(err);
       }
     })
-  }
-
-  updateClient(): void {
-
   }
 }
