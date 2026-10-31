@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {RouterLink, Router, NavigationEnd} from '@angular/router';
+import {filter} from 'rxjs/operators';
 import {Client} from '../models/client.model';
 import {ClientService} from '../services/client.service';
 
 @Component({
   selector: "app-client-list",
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: "client-list.component.html",
   styleUrl: "client-list.component.css"
 })
@@ -19,8 +21,18 @@ export class ClientListComponent implements OnInit {
   newClientName: string = "";
   newClientAge: number | null = null;
 
-  constructor(private clientService: ClientService) {
-
+  constructor(
+    private clientService: ClientService,
+    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef
+    ) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any)=> {
+      if (event.url === '/clients' || event.urlAfterRedirect === '/clients') {
+        this.loadClients();
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -32,6 +44,7 @@ export class ClientListComponent implements OnInit {
       next: (data) => {
         //console.log("Backend returns: ", data);
         this.clients = data;
+        this.changeDetectorRef.detectChanges();
       },
       error: (err) => {
         this.errorMessage = "Failed to download list of clients";
@@ -44,7 +57,6 @@ export class ClientListComponent implements OnInit {
     this.clientService.deleteClientById(id).subscribe({
       next: () => {
         this.loadClients();
-        window.location.reload();
       },
       error: (err) => {
         this.errorMessage = `Failed to delete client ${id}`;
@@ -63,12 +75,15 @@ export class ClientListComponent implements OnInit {
         this.newClientName = "";
         this.newClientAge = null;
         this.loadClients();
-        window.location.reload();
       },
       error: (err) => {
         this.errorMessage = "Filed to add new client"
         console.error(err);
       }
     })
+  }
+
+  updateClient(): void {
+
   }
 }

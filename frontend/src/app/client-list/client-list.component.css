@@ -65,8 +65,8 @@ tbody tr:hover {
   transition: background-color 0.2s ease;
 }
 
-.delete-button {
-  background-color: #990000;
+.delete-button, .edit-button {
+  background-color: #cc0000;
   color: white;
   border: 1px solid white;
   padding: 6px 14px;
@@ -74,12 +74,17 @@ tbody tr:hover {
   cursor: pointer;
   font-weight: bold;
   transition: all 0.2s ease;
+  margin: 5px;
 }
 
-.delete-button:hover {
+.delete-button:hover, .edit-button:hover {
   background-color: #cc0000;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
   transform: translateY(-1px);
+}
+
+.edit-button {
+  background-color: #990000;
 }
 
 p {
