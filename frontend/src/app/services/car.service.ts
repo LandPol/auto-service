@@ -31,7 +31,7 @@ export class CarService {
     return this.http.post<Car>(`${this.apiUrl}/${clientId}/cars`, car);
   }
 
-  updateCarById(clientId: string, carId: string, car: {model: string, type: string, productionYear: number}): Observable<Car> {
+  updateCarById(clientId: string, carId: string, car: {model: string, type: string, productionYear: number, clientId: string}): Observable<Car> {
     return this.http.put<Car>(`${this.apiUrl}/${clientId}/cars/${carId}`, car);
   }
 }

@@ -36,6 +36,7 @@
             <td>{{car.id}}</td>
             <td>{{car.description}}</td>
             <td>
+              <button [routerLink]="['/clients', clientId, 'cars', car.id]" class="edit-button">Edit</button>
               <button (click)="onDelete(clientId, car.id)" class="delete-button">Delete</button>
             </td>
           </tr>

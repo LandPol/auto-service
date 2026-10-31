@@ -93,7 +93,7 @@ tbody tr:hover {
   transition: background-color 0.2s ease;
 }
 
-.delete-button, .add-car-button, .back-button {
+.add-car-button, .back-button {
   color: white;
   border: 1px solid white;
   padding: 8px 16px;
@@ -104,17 +104,6 @@ tbody tr:hover {
   text-decoration: none;
   display: inline-block;
   text-align: center;
-}
-
-.delete-button {
-  background-color: #cc0000;
-  margin: 0;
-}
-
-.delete-button:hover {
-  background-color: #cc0000;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-  transform: translateY(-1px);
 }
 
 .add-car-button {
@@ -150,4 +139,26 @@ p {
   font-style: italic;
   font-size: 16px;
   margin-top: 20px;
+}
+
+.delete-button, .edit-button {
+  background-color: #cc0000;
+  color: white;
+  border: 1px solid white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  margin: 5px;
+}
+
+.delete-button:hover, .edit-button:hover {
+  background-color: #cc0000;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.edit-button {
+  background-color: #990000;
 }

@@ -2,10 +2,12 @@ import { Routes } from '@angular/router';
 import {ClientListComponent} from './components/client-list/client-list.component';
 import {ClientEditComponent} from './components/client-edit/client-edit.component';
 import {ClientDetailsComponent} from './components/client-details/client-details.component';
+import {CarEditComponent} from './components/car-edit/car-edit.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'clients', pathMatch: 'full'},
   {path: 'clients', component: ClientListComponent},
   {path: 'clients/edit/:id', component: ClientEditComponent},
-  {path: 'clients/:clientId/cars', component: ClientDetailsComponent}
+  {path: 'clients/:clientId/cars', component: ClientDetailsComponent},
+  {path: 'clients/:clientId/cars/:carId', component: CarEditComponent}
 ];

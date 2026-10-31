@@ -1,0 +1,63 @@
+<div class="main-container">
+  <h2>Edit Car</h2>
+
+  @if (errorMessage) {
+    <div class="error-banner">
+      <b>Error:</b> {{errorMessage}}
+    </div>
+  }
+  <div class="edit-form">
+    <div class="form-group">
+      <label for="model">Car model:</label>
+      <input
+        id="model"
+        type="text"
+        [(ngModel)]="car.model"
+        placeholder="Car model"
+        class="car-input"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="type">Car type:</label>
+      <input
+        id="type"
+        type="text"
+        [(ngModel)]="car.type"
+        placeholder="Car type"
+        class="car-input"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="production-year">Car production year:</label>
+      <input
+        id="production-year"
+        type="number"
+        [(ngModel)]="car.productionYear"
+        placeholder="Car production year"
+        class="car-input"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="owner-id">Owner:</label>
+      <select
+        id="owner-id"
+        [(ngModel)]="car.clientId"
+        class="car-input select-input"
+      >
+        @for (c of clients; track c.id) {
+          <option [value]="c.id">
+            {{ c.id.substring(0, 4) }}... - {{ c.name }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <div class="button-group">
+      <button (click)="onSave()" class="save-button">Save</button>
+      <button (click)="onCancel()" class="cancel-button">Cancel</button>
+    </div>
+  </div>
+</div>
