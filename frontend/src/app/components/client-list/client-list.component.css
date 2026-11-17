@@ -1,0 +1,148 @@
+.main-container {
+  background-color: #ff3e3e;
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 16px;
+  border: 2px solid white;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7);
+}
+
+h2 {
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  font-size: 28px;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.error-banner {
+  background-color: #b30000;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid white;
+}
+
+table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  padding: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid white;
+}
+
+td {
+  color: white;
+  padding: 12px 14px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.2s ease;
+}
+
+.delete-button, .edit-button {
+  background-color: #cc0000;
+  color: white;
+  border: 1px solid white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  margin: 5px;
+}
+
+.delete-button:hover, .edit-button:hover {
+  background-color: #cc0000;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.edit-button {
+  background-color: #990000;
+}
+
+p {
+  text-align: center;
+  color: white;
+  font-style: italic;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.add-client-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.client-input {
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid white;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  flex: 1;
+  transition: all 0.2s ease;
+}
+
+.client-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.client-input:focus {
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.client-input-age {
+  max-width: 90px;
+  flex: none;
+}
+
+.add-button {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: 1px solid white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.add-button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}

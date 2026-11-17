@@ -1,0 +1,53 @@
+
+<div class="main-container">
+  <h2>List of clients</h2>
+  <p style="color: yellow; font-weight: bold;">Number of elements: {{ clients.length }}</p>
+  @if (errorMessage) {
+    <div class="error-banner">
+      <b>Error:</b> {{errorMessage}}
+    </div>
+  }
+
+  <div class="add-client-form">
+    <input
+      type="text"
+      [(ngModel)]="newClientName"
+      placeHolder="Enter client name"
+      class="client-input"
+    >
+    <input
+      type="text"
+      [(ngModel)]="newClientAge"
+      placeHolder="Enter client age"
+      class="client-input"
+    >
+    <button (click)="addClient()" class="add-button">Add Client</button>
+  </div>
+
+  @if (clients.length > 0) {
+    <table>
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (client of clients; track client.id) {
+          <tr>
+            <td>{{client.id}}</td>
+            <td>{{client.name}}</td>
+            <td>
+              <button [routerLink]="['/clients', client.id, 'cars']" class="edit-button">Details</button>
+              <button [routerLink]="['/clients/edit', client.id]" class="edit-button">Edit</button>
+              <button (click)="onDelete(client.id)" class="delete-button">Delete</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>List of clients is empty</p>
+  }
+</div>
